@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Cadastrar Produto</h2>
+
+<form method="POST">
+    <input type="text" name="nome" placeholder="Nome" required><br><br>
+    <input type="number" step="0.01" name="preco" placeholder="Preço" required><br><br>
+    <input type="number" name="estoque" placeholder="Estoque" required><br><br>
+
+    <button type="submit">Salvar</button>
+</form>
+
+
+<hr>
+
+<h2>Lista de Produtos</h2>
+
+<ul>
+{% for produto in produtos %}
+    <li>{{ produto.nome }} - R$ {{ produto.preco }} | Estoque: {{ produto.estoque }}</li>
+    | <a href="{{ url_for('editar', id=produto.id) }}">Editar</a>
+    | <a href="/deletar/{{ produto.id }}">Excluir</a>
+{% endfor %}
+</ul>
+{% endblock %}
